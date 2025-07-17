@@ -6,11 +6,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 
+import java.time.LocalDate;
+
 @Entity
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Setter
+@Getter
 @Builder
 public class JobTrackerEntity {
     @Id
@@ -25,6 +27,9 @@ public class JobTrackerEntity {
 
     private String location;
 
-    private String applicationURL;
+    private LocalDate applicationDate;
+
+    private String jobURL;
+
 }
 
