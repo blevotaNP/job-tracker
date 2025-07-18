@@ -1,8 +1,7 @@
-package Controller;
+package com.example.jobtracker.Controller;
 
-import Entity.JobTrackerEntity;
-import Service.JobTrackerService;
-import lombok.Getter;
+import com.example.jobtracker.Entity.JobTrackerEntity;
+import com.example.jobtracker.Service.JobTrackerService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,5 +23,10 @@ public class JobTrackerController {
     @GetMapping
     public List<JobTrackerEntity> getAllJobs() {
         return service.getAllJobs();
+    }
+
+    @GetMapping("/{position}")
+    public JobTrackerEntity findJobByPosition(@PathVariable String position) {
+        return service.getJobByPosition(position);
     }
 }

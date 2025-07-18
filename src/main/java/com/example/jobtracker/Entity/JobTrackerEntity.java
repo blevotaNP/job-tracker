@@ -1,4 +1,4 @@
-package Entity;
+package com.example.jobtracker.Entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

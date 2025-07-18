@@ -1,10 +1,10 @@
-package Repository;
+package com.example.jobtracker.Repository;
 
-import Entity.JobTrackerEntity;
+import com.example.jobtracker.Entity.JobTrackerEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
 
 public interface JobTrackerRepository extends JpaRepository<JobTrackerEntity, Long> {
 
-    JobTrackerEntity getJob();
+    JobTrackerEntity findJobByPosition(String position);
+    JobTrackerEntity isAvailableJobByPosition(String position);
 }

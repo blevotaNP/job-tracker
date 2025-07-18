@@ -1,7 +1,7 @@
-package Service;
+package com.example.jobtracker.Service;
 
-import Entity.JobTrackerEntity;
-import Repository.JobTrackerRepository;
+import com.example.jobtracker.Entity.JobTrackerEntity;
+import com.example.jobtracker.Repository.JobTrackerRepository;
 import org.springframework.stereotype.Service;
 
 
@@ -20,12 +20,15 @@ public class JobTrackerService {
         return repository.findAll();
     }
 
-    public JobTrackerEntity getJobById(int id){
-        return repository.getJob();
+    public JobTrackerEntity getJobByPosition(String position){
+        return repository.findJobByPosition(position);
     }
 
     public JobTrackerEntity create(JobTrackerEntity entity){
         return repository.save(entity);
+    }
+    public JobTrackerEntity isJobAvailable(String position){
+        return repository.isAvailableJobByPosition(position);
     }
 
 }
