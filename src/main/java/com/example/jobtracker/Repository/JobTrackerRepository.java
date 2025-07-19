@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface JobTrackerRepository extends JpaRepository<JobTrackerEntity, Long> {
 
-    JobTrackerEntity findJobByPosition(String position);
+    List<JobTrackerEntity> findJobByPosition(String position);
 
     List<JobTrackerEntity> findByPositionAndStatusIn(String position, List<String> statuses);
 }

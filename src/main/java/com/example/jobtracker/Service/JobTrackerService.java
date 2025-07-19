@@ -21,7 +21,7 @@ public class JobTrackerService {
         return repository.findAll();
     }
 
-    public JobTrackerEntity getJobByPosition(String position){
+    public List<JobTrackerEntity> getJobByPosition(String position){
         return repository.findJobByPosition(position);
     }
 
