@@ -46,6 +46,8 @@ public class JobTrackerService {
         }
     }
 
-    //add delete method
+    public void deleteJob(Long id){
+        repository.deleteById(id);
+    }
 
 }

@@ -43,4 +43,9 @@ public class JobTrackerController {
         service.updateJobStatus(id, status);
         return ResponseEntity.ok("Updated succesfully");
     }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteJob(@PathVariable Long id) {
+        service.deleteJob(id);
+    }
 }
