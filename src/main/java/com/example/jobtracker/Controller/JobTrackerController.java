@@ -26,7 +26,12 @@ public class JobTrackerController {
     }
 
     @GetMapping("/{position}")
-    public JobTrackerEntity findJobByPosition(@PathVariable String position) {
+    public JobTrackerEntity getJobByPosition(@PathVariable String position) {
         return service.getJobByPosition(position);
+    }
+
+    @GetMapping("/available/{position}")
+    public List<JobTrackerEntity> getAvailableJobs(@PathVariable String position) {
+        return service.isJobAvailable(position);
     }
 }
