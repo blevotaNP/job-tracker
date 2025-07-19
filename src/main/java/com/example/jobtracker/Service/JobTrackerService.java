@@ -33,4 +33,19 @@ public class JobTrackerService {
         return repository.findByPositionAndStatusIn(position, statuses);
     }
 
+    public void updateJobStatus(Long id, String status) throws Exception {
+        JobTrackerEntity job = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Job with " + id + " id was not found"));
+        List<String> statuses = Arrays.asList("AVAILABLE", "INTERVIEW", "CLOSED");
+        if(statuses.contains(status.toUpperCase())){
+            job.setStatus(status);
+            repository.save(job);
+        }
+        else {
+            throw new IllegalArgumentException("Incorrect Status!");
+        }
+    }
+
+    //add delete method
+
 }

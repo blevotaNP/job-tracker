@@ -2,9 +2,11 @@ package com.example.jobtracker.Controller;
 
 import com.example.jobtracker.Entity.JobTrackerEntity;
 import com.example.jobtracker.Service.JobTrackerService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/jobs")
@@ -33,5 +35,12 @@ public class JobTrackerController {
     @GetMapping("/available/{position}")
     public List<JobTrackerEntity> getAvailableJobs(@PathVariable String position) {
         return service.isJobAvailable(position);
+    }
+
+    @PatchMapping("/update/{id}")
+    public ResponseEntity<String> updateJob(@PathVariable Long id, @RequestBody Map<String, String> body) throws Exception {
+        String status = body.get("status");
+        service.updateJobStatus(id, status);
+        return ResponseEntity.ok("Updated succesfully");
     }
 }
