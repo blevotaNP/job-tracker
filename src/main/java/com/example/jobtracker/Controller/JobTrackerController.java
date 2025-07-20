@@ -48,4 +48,6 @@ public class JobTrackerController {
     public void deleteJob(@PathVariable Long id) {
         service.deleteJob(id);
     }
+
+    //connect database
 }

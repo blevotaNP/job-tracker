@@ -1,17 +1,26 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:jobtrackermate
-    driverClassName: org.h2.Driver
+    #use FILE-BASED H2 database (instead of memory)
+    #the data will be saved in /data/jobtrackermate.mv.db file
+    url: jdbc:h2:file:./data/jobtrackermate
+    driver-class-name: org.h2.Driver
     username: sa
     password:
+
   jpa:
     hibernate:
+      #automatically create/update tables based on your entity classes
       ddl-auto: update
+    #show generated SQL queries in console
     show-sql: true
+    #set H2 dialect for compatibility with H2 syntax
     database-platform: org.hibernate.dialect.H2Dialect
+
   h2:
     console:
+      #enable browser-accessible H2 console (for debugging)
       enabled: true
+      path: /h2-console
 
 server:
   port: 8080

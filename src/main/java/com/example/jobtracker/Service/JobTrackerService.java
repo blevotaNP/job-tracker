@@ -29,14 +29,14 @@ public class JobTrackerService {
         return repository.save(entity);
     }
     public List<JobTrackerEntity> isJobAvailable(String position){
-        List<String> statuses = Arrays.asList("Available", "Interview");
+        List<String> statuses = Arrays.asList("Available", "Interview", "Review");
         return repository.findByPositionAndStatusIn(position, statuses);
     }
 
     public void updateJobStatus(Long id, String status) throws Exception {
         JobTrackerEntity job = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Job with " + id + " id was not found"));
-        List<String> statuses = Arrays.asList("AVAILABLE", "INTERVIEW", "CLOSED");
+        List<String> statuses = Arrays.asList("AVAILABLE", "INTERVIEW","REVIEW", "CLOSED");
         if(statuses.contains(status.toUpperCase())){
             job.setStatus(status);
             repository.save(job);
