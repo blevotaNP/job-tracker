@@ -49,5 +49,11 @@ public class JobTrackerController {
         service.deleteJob(id);
     }
 
-    //connect database
+    /*PLAN:
+    add filters
+    do a frontside with menu page, and pages for each of main methods
+    read CV from file and save it
+    edit CV
+    read offers from site (file)
+    */
 }
