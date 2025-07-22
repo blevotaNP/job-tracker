@@ -36,7 +36,7 @@ public class JobTrackerService {
     public void updateJobStatus(Long id, String status) throws Exception {
         JobTrackerEntity job = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Job with " + id + " id was not found"));
-        List<String> statuses = Arrays.asList("AVAILABLE", "INTERVIEW","REVIEW", "CLOSED");
+        List<String> statuses = Arrays.asList("AVAILABLE", "INTERVIEW", "REVIEW", "CLOSED");
         if(statuses.contains(status.toUpperCase())){
             job.setStatus(status);
             repository.save(job);

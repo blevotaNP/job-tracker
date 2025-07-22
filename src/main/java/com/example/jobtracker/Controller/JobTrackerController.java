@@ -2,6 +2,7 @@ package com.example.jobtracker.Controller;
 
 import com.example.jobtracker.Entity.JobTrackerEntity;
 import com.example.jobtracker.Service.JobTrackerService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class JobTrackerController {
     }
 
     @PostMapping
-    public JobTrackerEntity createJob(@RequestBody JobTrackerEntity entity) {
+    public JobTrackerEntity createJob(@Valid @RequestBody JobTrackerEntity entity) {
         return service.create(entity);
     }
 
