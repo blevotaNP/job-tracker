@@ -1,6 +1,7 @@
 package com.example.jobtracker.Repository;
 
 import com.example.jobtracker.Entity.JobTrackerEntity;
+import com.example.jobtracker.Enums.JobStatusEnum;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -9,5 +10,5 @@ public interface JobTrackerRepository extends JpaRepository<JobTrackerEntity, Lo
 
     List<JobTrackerEntity> findJobByPosition(String position);
 
-    List<JobTrackerEntity> findByPositionAndStatusIn(String position, List<String> statuses);
+    List<JobTrackerEntity> findByPositionAndStatusIn(String position, List<JobStatusEnum> statuses);
 }

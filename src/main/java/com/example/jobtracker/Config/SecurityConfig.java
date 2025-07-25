@@ -15,16 +15,27 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 //clears default security
-                .csrf(customizer -> customizer.disable())
+                .csrf(csrf -> csrf.disable())
+
                 //every user must be authorized
-                .authorizeHttpRequests(request -> request.anyRequest().authenticated())
+                .authorizeHttpRequests(request -> request
+                        .requestMatchers("/h2-console/**").permitAll()
+                        .anyRequest().authenticated()
+                )
+                //enables <iframe> (for h2)
+                .headers(headers -> headers
+                        .frameOptions(frame -> frame.disable()))
+
                 //enables the default form login for browser
-                .formLogin(Customizer.withDefaults())
+                //.formLogin(Customizer.withDefaults())
+
                 //enables for REST API access (Postman)
                 .httpBasic(Customizer.withDefaults())
+
                 //makes sessionID stateless
-                .sessionManagement(session
-                        -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .sessionManagement(session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+
                 .build();
     }
 }

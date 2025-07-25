@@ -1,6 +1,7 @@
 package com.example.jobtracker.Service;
 
 import com.example.jobtracker.Entity.JobTrackerEntity;
+import com.example.jobtracker.Enums.JobStatusEnum;
 import com.example.jobtracker.Repository.JobTrackerRepository;
 import org.springframework.stereotype.Service;
 
@@ -28,22 +29,22 @@ public class JobTrackerService {
     public JobTrackerEntity create(JobTrackerEntity entity){
         return repository.save(entity);
     }
+
     public List<JobTrackerEntity> isJobAvailable(String position){
-        List<String> statuses = Arrays.asList("Available", "Interview", "Review");
-        return repository.findByPositionAndStatusIn(position, statuses);
+        List<JobStatusEnum> activeStatuses = JobStatusEnum.getActiveStatuses();
+        return repository.findByPositionAndStatusIn(position, activeStatuses);
     }
 
     public void updateJobStatus(Long id, String status) throws Exception {
         JobTrackerEntity job = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Job with " + id + " id was not found"));
-        List<String> statuses = Arrays.asList("AVAILABLE", "INTERVIEW", "REVIEW", "CLOSED");
-        if(statuses.contains(status.toUpperCase())){
-            job.setStatus(status);
-            repository.save(job);
+        if(!JobStatusEnum.isValid(status)){
+            throw new IllegalArgumentException("Invalid status " + status);
         }
-        else {
-            throw new IllegalArgumentException("Incorrect Status!");
-        }
+
+        JobStatusEnum jobStatus = JobStatusEnum.valueOf(status.toUpperCase());
+        job.setStatus(jobStatus);
+        repository.save(job);
     }
 
     public void deleteJob(Long id){
