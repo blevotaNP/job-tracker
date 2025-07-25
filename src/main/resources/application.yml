@@ -22,5 +22,10 @@ spring:
       enabled: true
       path: /h2-console
 
+  security:
+    user:
+      name: user
+      password: 123
+
 server:
   port: 8080

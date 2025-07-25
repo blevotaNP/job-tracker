@@ -39,7 +39,7 @@ public class JobTrackerController {
     }
 
     @PatchMapping("/update/{id}")
-    public ResponseEntity<String> updateJob(@PathVariable Long id, @RequestBody Map<String, String> body) throws Exception {
+    public ResponseEntity<String> updateJobStatus(@PathVariable Long id, @RequestBody Map<String, String> body) throws Exception {
         String status = body.get("status");
         service.updateJobStatus(id, status);
         return ResponseEntity.ok("Updated succesfully");
