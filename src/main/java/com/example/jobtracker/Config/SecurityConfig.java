@@ -31,7 +31,7 @@ public class SecurityConfig {
                         .frameOptions(frame -> frame.disable()))
 
                 //enables the default form login for browser
-                //.formLogin(Customizer.withDefaults())
+                .formLogin(Customizer.withDefaults())
 
                 //enables for REST API access (Postman)
                 .httpBasic(Customizer.withDefaults())
